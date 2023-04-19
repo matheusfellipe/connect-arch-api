@@ -1,7 +1,8 @@
+/* eslint-disable prettier/prettier */
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
-import { authConfig } from '../config/auth.config';
+import { authConfig } from '../config/auth.cofig'; 
 import { PayloadToken } from './interfaces/jwt.interfaces';
 
 @Injectable()
