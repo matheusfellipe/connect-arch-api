@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { IsString } from 'class-validator';
 
-export class GetUserByEmailDTO {
+export class GetArchitectByRegisterDTO {
   @IsString() // TODO: IsCPF
-  email: string;
+  registry: string;
 }

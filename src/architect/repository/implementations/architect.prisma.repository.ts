@@ -3,7 +3,7 @@ import { Injectable } from "@nestjs/common";
 import { prismaClient } from "src/@shared/providers";
 
 import { Architect } from "@prisma/client";
-import { CreateArchitectDTO } from "src/architect/dto/architect.dto";
+import { CreateArchitectDTO } from "src/architect/dto/create-architect.dto";
 
 @Injectable()
 export class ArchitectPrismaRepository {
@@ -24,6 +24,15 @@ export class ArchitectPrismaRepository {
         })
         return createArchitect
     }
+
+    async findByRegistry(registry: string): Promise<Architect> {
+        const architect = await prismaClient.architect.findFirst({
+          where: {
+            registry,
+          },
+        });
+        return architect || undefined;
+      }
 
     async getAllArchitects(): Promise<Architect[] | undefined> {
         const architect = await prismaClient.architect.findMany({});

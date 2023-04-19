@@ -16,19 +16,19 @@ export class UsersPrismaRepository implements IUserRepository {
     return user || undefined;
   }
 
-  async save(data: CreateUserDTO): Promise<User> {
-    const { roleId, password, ...rest } = data;
-    const createUser = await prismaClient.user.create({
+  async save(data: CreateUserDTO,password:string): Promise<User> {
+    const { roleId, ...rest } = data;
+    const createdUser = await prismaClient.user.create({
       data: {
         ...rest,
         password,
-        role: {
-          connect: {
-            id: roleId,
-          },
-        },
+     role:{
+      connect:{
+        id:roleId
+      }
+     }
       },
     });
-    return createUser;
+    return createdUser;
   }
 }
