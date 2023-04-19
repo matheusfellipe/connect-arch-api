@@ -5,8 +5,8 @@ import { GetServiceRequestByStatusDTO } from 'src/service-request/dto/get-servic
 import { ServiceRequestRepository } from 'src/service-request/repository/implementations/service-request.prisma.repository';
 
 @Injectable()
-export class GetAllServiceRequestUseCase {
-  private readonly logger: Logger = new Logger(GetAllServiceRequestUseCase.name);
+export class GetServiceRequestByStatusUseCase {
+  private readonly logger: Logger = new Logger(GetServiceRequestByStatusUseCase.name);
 
   constructor(private readonly serviceRequestRepository: ServiceRequestRepository) {}
   async execute(input: GetServiceRequestByStatusDTO):Promise<ServiceRequest> {
