@@ -2,8 +2,8 @@
 import { Injectable } from '@nestjs/common';
 import { prismaClient } from '../../../@shared/providers/prisma-config.provider';
 import { ServiceRequest } from '@prisma/client';
-import { CreateServiceRequestDto } from 'src/service-request/dto/create-service-request.dto';
-import { UpdateServiceRequestDto } from 'src/service-request/dto/update-service-request.dto';
+import { CreateServiceRequestDTO } from 'src/service-request/dto/create-service-request.dto';
+import { UpdateServiceRequestDTO } from 'src/service-request/dto/update-service-request.dto';
 
 @Injectable()
 export class ServiceRequestRepository {
@@ -22,7 +22,7 @@ export class ServiceRequestRepository {
     return architect || undefined;
   }
 
-  async create(serviceRequest:CreateServiceRequestDto): Promise<ServiceRequest> {
+  async create(serviceRequest:CreateServiceRequestDTO): Promise<ServiceRequest> {
     const {userId,architectId,...rest} = serviceRequest
     const serviceRequestCreated = prismaClient.serviceRequest.create({ 
         data:{
@@ -45,9 +45,9 @@ export class ServiceRequestRepository {
 
   async update(
     id: string,
-    updateServiceRequestDto: UpdateServiceRequestDto,
+    updateServiceRequestDTO: UpdateServiceRequestDTO,
   ): Promise<ServiceRequest> {
-    const { userId, architectId, ...rest } = updateServiceRequestDto;
+    const { userId, architectId, ...rest } = updateServiceRequestDTO;
     const serviceRequest = await prismaClient.serviceRequest.update({
       where: { id },
       data: {

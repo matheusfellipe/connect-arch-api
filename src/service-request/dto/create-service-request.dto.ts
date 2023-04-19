@@ -7,7 +7,7 @@ export enum ServiceRequestStatus {
   REFUSED = 'refused',
 }
 
-export class CreateServiceRequestDto {
+export class CreateServiceRequestDTO {
   @IsNotEmpty()
   @IsString()
   description: string;

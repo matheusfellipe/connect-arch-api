@@ -2,7 +2,7 @@
 import {  IsString, IsEnum } from 'class-validator';
 import { ServiceRequestStatus } from './create-service-request.dto';
 
-export class UpdateServiceRequestDto {
+export class UpdateServiceRequestDTO {
  
   @IsString()
   description: string;
