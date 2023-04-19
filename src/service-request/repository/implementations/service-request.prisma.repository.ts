@@ -22,6 +22,14 @@ export class ServiceRequestRepository {
     return architect || undefined;
   }
 
+  async findById(id: string): Promise<ServiceRequest> {
+    const architect = prismaClient.serviceRequest.findUnique({
+     where: { id },
+   });
+
+   return architect || undefined;
+ }
+
   async create(serviceRequest:CreateServiceRequestDTO): Promise<ServiceRequest> {
     const {userId,architectId,...rest} = serviceRequest
     const serviceRequestCreated = prismaClient.serviceRequest.create({ 
