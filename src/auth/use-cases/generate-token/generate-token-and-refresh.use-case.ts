@@ -1,8 +1,9 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { DateHandlingProvider } from 'src/@shared/providers/date-handling.provider';
 import { GenerateHashCodeProvider } from 'src/@shared/providers/generate-hash-code.provider';
-import { authConfig } from '../../config/auth.config';
+import { authConfig } from '../../config/auth.cofig';
 import { RefreshTokenRepository } from '../../repositories/refresh-token.repository';
 
 @Injectable()

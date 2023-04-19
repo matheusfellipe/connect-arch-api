@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 // import { GetUserByEmailUseCase } from
 import {
   BadRequestException,
@@ -6,7 +7,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { EncryptProvider } from 'src/@shared/providers/encrypt.provider';
-import { GetUserByEmailUseCase } from 'src/modules/users/useCases/get-user/get-user.usecase';
+import { GetUserByEmailUseCase } from '../../../users/useCases/get-user/get-user.usecase';
 
 @Injectable()
 export class AuthUseCase {

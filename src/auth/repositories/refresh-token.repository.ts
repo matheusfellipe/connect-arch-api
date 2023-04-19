@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
-import { prismaClient } from '../../../@shared/providers';
+import { prismaClient } from '../../@shared/providers/prisma-config.provider';
 import {
   InputCreateRefreshTokenRepository,
   InputFindRefreshTokenRepository,
