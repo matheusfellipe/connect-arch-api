@@ -11,13 +11,13 @@ export class GetUserByEmailUseCase {
   constructor(private readonly usersRepository: UsersPrismaRepository) {}
 
   async execute(input: GetUserByEmailDTO): Promise<User> {
-    const student = await this.usersRepository.findByEmail(input.email);
-    if (!student) {
+    const user = await this.usersRepository.findByEmail(input.email);
+    if (!user) {
       const error = new NotFoundException('User');
       this.logger.error(error.message);
       throw error;
     }
     this.logger.log('User found successfully');
-    return student;
+    return user;
   }
 }

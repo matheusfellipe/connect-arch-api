@@ -7,11 +7,11 @@ import {
   import { SharedModule } from './@shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { ArchitectModule } from './architect/architect.module';
+
 import { ServiceRequestModule } from './service-request/service-request.module';
   
   @Module({
-    imports: [ConfigModule.forRoot(), UsersModule, AuthModule, SharedModule,ArchitectModule,ServiceRequestModule],
+    imports: [ConfigModule.forRoot(), UsersModule, AuthModule, SharedModule,ServiceRequestModule],
     controllers: [],
   })
   export class AppModule {

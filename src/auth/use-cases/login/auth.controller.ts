@@ -14,8 +14,9 @@ export class AuthController {
   @Post('login')
   @Public()
   async signIn(@Request() req) {
+  console.log(req.user)
     const { accessToken, refreshToken } =
-      await this.generateAccessAndRefreshTokenUseCase.execute(req.user.id);
+      await this.generateAccessAndRefreshTokenUseCase.execute(req.user);
     return {
       accessToken,
       refreshToken,

@@ -14,12 +14,12 @@ export class ServiceRequestPrismaRepository {
      return serviceRequest
   }
 
-  async findByStatusAndArchitectId(status: string,architectId:string): Promise<ServiceRequest[]> {
-     const architect = prismaClient.serviceRequest.findMany({
-      where: { status:status,architectId },
+  async findByStatusAndUserId(status: string,userId:string): Promise<ServiceRequest[]> {
+     const serviceRequest = prismaClient.serviceRequest.findMany({
+      where: { status:status,userId },
     });
 
-    return architect;
+    return serviceRequest;
   }
 
   async findById(id: string): Promise<ServiceRequest> {
@@ -31,7 +31,7 @@ export class ServiceRequestPrismaRepository {
  }
 
   async create(serviceRequest:CreateServiceRequestDTO): Promise<ServiceRequest> {
-    const {userId,architectId,...rest} = serviceRequest
+    const {customerId,architectId,...rest} = serviceRequest
     const serviceRequestCreated = prismaClient.serviceRequest.create({ 
         data:{
     ...rest,
@@ -42,7 +42,7 @@ export class ServiceRequestPrismaRepository {
     },
    cliente:{
     connect:{
-        id:userId
+        id:customerId
     }
    }
 

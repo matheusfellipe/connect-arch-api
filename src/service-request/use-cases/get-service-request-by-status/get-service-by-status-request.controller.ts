@@ -15,7 +15,8 @@ export class GetServiceRequestByStatusController {
       @UseGuards(JwtAuthGuard)
 @Get(':status')
 async getServiceRequest(@Param('status') status: GetServiceRequestByStatusDTO,@Request() req): Promise<ServiceRequest[]> {
-  const arquitectId =req.arquitectId;
-  return this.getServiceRequestUseCase.execute(status,arquitectId);
+  const userId =req.user.userId;
+  console.log(req.user)
+  return this.getServiceRequestUseCase.execute(status,userId);
 }
 }

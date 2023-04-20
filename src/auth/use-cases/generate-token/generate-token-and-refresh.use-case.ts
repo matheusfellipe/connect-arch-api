@@ -15,7 +15,8 @@ export class GenerateAccessAndRefreshTokenUseCase {
     private readonly dateHandlingProvider: DateHandlingProvider,
   ) {}
   async execute(user: any) {
-    const payload = { sub: user.id };
+    console.log(user)
+    const payload = { sub:  user.id,role:user.roleId };
 
     const accessToken = this.jwtService.sign(payload);
 
@@ -28,7 +29,7 @@ export class GenerateAccessAndRefreshTokenUseCase {
 
     await this.refreshTokenRepository.create({
       refreshToken: refreshToken,
-      userId: user,
+      userId: user.id,
       expiresAt: expirationDate,
     });
     return {

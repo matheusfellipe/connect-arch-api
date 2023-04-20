@@ -16,6 +16,7 @@ export class UsersPrismaRepository implements IUserRepository {
     return user || undefined;
   }
 
+
   async save(data: CreateUserDTO,password:string): Promise<User> {
     const { roleId, ...rest } = data;
     const createdUser = await prismaClient.user.create({

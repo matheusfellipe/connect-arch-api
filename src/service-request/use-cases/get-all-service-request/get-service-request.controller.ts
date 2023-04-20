@@ -1,13 +1,13 @@
 /* eslint-disable prettier/prettier */
 import { Controller, Get} from '@nestjs/common';
-import { GetAllArchitectUseCase } from 'src/architect/useCases/get-architect/get-architect.usecase'; 
+import { GetAllServiceRequestUseCase } from './get-all-service-request.usecase';
 
 
 @Controller('service-request')
 export class GetAllServiceRequestController {
     constructor(
        
-        private readonly getAllServiceRequestUseCase: GetAllArchitectUseCase,
+        private readonly getAllServiceRequestUseCase: GetAllServiceRequestUseCase,
       
       ) {}
 @Get()
