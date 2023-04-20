@@ -15,9 +15,10 @@ import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { JwtRefreshTokenStrategy } from './strategies/jwt-refresh-token.strategy';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { RefreshTokenController } from './use-cases/refresh-token/refresh-token.controller';
 
 @Module({
-  controllers:[AuthController],
+  controllers:[AuthController,RefreshTokenController],
   imports: [
     UsersModule,
     PassportModule,

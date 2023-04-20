@@ -7,7 +7,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { EncryptProvider } from 'src/@shared/providers/encrypt.provider';
-import { GetUserByEmailUseCase } from '../../../users/useCases/get-user/get-user.usecase';
+import { GetUserByEmailUseCase } from '../../../users/useCases/get-user-by-email/get-user-by-email.usecase';
 
 @Injectable()
 export class AuthUseCase {

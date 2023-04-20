@@ -3,7 +3,7 @@ import { Controller,Get } from '@nestjs/common/decorators';
 import { GetAllArchitectUseCase } from './get-architect.usecase';
 
 
-@Controller('/architect')
+@Controller('/architects')
 export class GetAllArchitectController {
     constructor(private getAllArchitectUseCase: GetAllArchitectUseCase){
 

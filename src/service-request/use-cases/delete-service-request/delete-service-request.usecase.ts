@@ -1,13 +1,13 @@
 /* eslint-disable prettier/prettier */
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { ServiceRequest } from '@prisma/client';
-import { ServiceRequestRepository } from 'src/service-request/repository/implementations/service-request.prisma.repository';
+import { ServiceRequestPrismaRepository } from 'src/service-request/repository/implementations/service-request.prisma.repository';
 
 @Injectable()
 export class DeleteServiceRequestUseCase {
   private readonly logger: Logger = new Logger(DeleteServiceRequestUseCase.name);
 
-  constructor(private readonly serviceRequestRepository: ServiceRequestRepository) {}
+  constructor(private readonly serviceRequestRepository: ServiceRequestPrismaRepository) {}
 
   async execute(id: string): Promise<ServiceRequest> {
     const serviceRequest = await this.serviceRequestRepository.findById(id);

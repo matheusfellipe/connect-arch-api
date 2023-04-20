@@ -2,13 +2,13 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { ServiceRequest } from '@prisma/client';
 import { UpdateServiceRequestDTO } from 'src/service-request/dto/update-service-request.dto';
-import { ServiceRequestRepository } from 'src/service-request/repository/implementations/service-request.prisma.repository';
+import { ServiceRequestPrismaRepository} from 'src/service-request/repository/implementations/service-request.prisma.repository';
 
 @Injectable()
 export class UpdateServiceRequestUseCase {
   private readonly logger: Logger = new Logger(UpdateServiceRequestUseCase.name);
 
-  constructor(private readonly serviceRequestRepository: ServiceRequestRepository) {}
+  constructor(private readonly serviceRequestRepository: ServiceRequestPrismaRepository) {}
 
   async execute(id: string, input: UpdateServiceRequestDTO): Promise<ServiceRequest> {
     const serviceRequested = await this.serviceRequestRepository.findById(id)

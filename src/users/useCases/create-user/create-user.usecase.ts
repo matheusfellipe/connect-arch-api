@@ -1,24 +1,26 @@
 /* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable, Logger } from '@nestjs/common';
 import { CreateUserDTO } from '../../dto/create-user.dto';
-// import { UsersMemoryRepository } from '../repository/implementations/users.memory.repository';
 import { UsersPrismaRepository } from '../../repository/implementations/users.prisma.repository';
 import { EncryptProvider } from 'src/@shared/providers';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class CreateUserUseCase {
-  constructor(private userRepository: UsersPrismaRepository,private encryptProvider:EncryptProvider) {}
+  constructor(private readonly userRepository: UsersPrismaRepository,private readonly encryptProvider:EncryptProvider) {}
+  private readonly logger: Logger = new Logger(CreateUserUseCase.name);
+  async execute(input: CreateUserDTO):Promise<User> {
 
-  async execute(input: CreateUserDTO) {
-    // eslint-disable-next-line no-console
-    console.log(input);
     const { email } = input;
     const existUser = await this.userRepository.findByEmail(email);
     if (existUser) {
-      throw new Error('User already exists!');
+      const error = new ConflictException('User already exists');
+      this.logger.log(error.message);
+      throw error;
     }
     const password = await this.encryptProvider.encrypt(input.password, 13);
-    const user = await this.userRepository.save(input,password);
-    return user;
+    const userCreated = await this.userRepository.save(input,password);
+    this.logger.log(`User ${userCreated.name} created`);
+    return userCreated;
   }
 }

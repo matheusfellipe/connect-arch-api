@@ -6,7 +6,7 @@ import { CreateServiceRequestDTO } from 'src/service-request/dto/create-service-
 import { UpdateServiceRequestDTO } from 'src/service-request/dto/update-service-request.dto';
 
 @Injectable()
-export class ServiceRequestRepository {
+export class ServiceRequestPrismaRepository {
   
   async findAll(): Promise<ServiceRequest[]|undefined> {
      const serviceRequest = await prismaClient.serviceRequest.findMany({});
