@@ -12,8 +12,8 @@ export class CreateServiceRequestUseCase {
 
   async execute(input: CreateServiceRequestDTO): Promise<ServiceRequest> {
   
-    const patient = await this.serviceRequestRepository.create(input);
-    this.logger.log(`Patient ${patient.id} created`);
-    return patient;
+    const serviceRequested = await this.serviceRequestRepository.create(input);
+    this.logger.log(`serviceRequested ${serviceRequested.id} created`);
+    return serviceRequested;
   }
 }
