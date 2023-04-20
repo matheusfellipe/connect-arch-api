@@ -3,7 +3,7 @@ import { Body, Controller, Post } from '@nestjs/common/decorators';
 import { CreateServiceRequestUseCase } from './create-service-request.usecase';
 import { CreateServiceRequestDTO } from 'src/service-request/dto/create-service-request.dto';
 
-@Controller('/service-request')
+@Controller('service-request')
 export class CreateServiceRequestController {
     constructor(private createServiceRequestUseCase: CreateServiceRequestUseCase){
 

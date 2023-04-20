@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common/decorators';
 import { CreateServiceRequestController } from './use-cases/create-service-request/create-service-request.controller';
-import { GetServiceRequestByStatusController } from './use-cases/get-service-request-by-status/get-service-request.controller';
+import { GetServiceRequestByStatusController } from './use-cases/get-service-request-by-status/get-service-by-status-request.controller';
 import { UpdateServiceRequestController } from './use-cases/update-service-request/update-service.controller';
 import { DeleteServiceRequestController } from './use-cases/delete-service-request/delete-service-request.controller';
 import { ServiceRequestPrismaRepository } from './repository/implementations/service-request.prisma.repository';
@@ -14,6 +14,7 @@ import { DeleteServiceRequestUseCase } from './use-cases/delete-service-request/
 
 
 @Module({
+  
   controllers: [
     CreateServiceRequestController,
     GetServiceRequestByStatusController,

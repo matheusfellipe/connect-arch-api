@@ -14,12 +14,12 @@ export class ServiceRequestPrismaRepository {
      return serviceRequest
   }
 
-  async findByStatus(status: string): Promise<ServiceRequest> {
-     const architect = prismaClient.serviceRequest.findFirst({
-      where: { status:status },
+  async findByStatusAndArchitectId(status: string,architectId:string): Promise<ServiceRequest[]> {
+     const architect = prismaClient.serviceRequest.findMany({
+      where: { status:status,architectId },
     });
 
-    return architect || undefined;
+    return architect;
   }
 
   async findById(id: string): Promise<ServiceRequest> {

@@ -3,7 +3,7 @@ import { Controller, Get} from '@nestjs/common';
 import { GetAllArchitectUseCase } from 'src/architect/useCases/get-architect/get-architect.usecase'; 
 
 
-@Controller()
+@Controller('service-request')
 export class GetAllServiceRequestController {
     constructor(
        

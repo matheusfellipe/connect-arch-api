@@ -9,8 +9,8 @@ export class GetServiceRequestByStatusUseCase {
   private readonly logger: Logger = new Logger(GetServiceRequestByStatusUseCase.name);
 
   constructor(private readonly serviceRequestRepository: ServiceRequestPrismaRepository) {}
-  async execute(input: GetServiceRequestByStatusDTO):Promise<ServiceRequest> {
-    const serviceRequest = await this.serviceRequestRepository.findByStatus(input.status)
+  async execute(input: GetServiceRequestByStatusDTO,architectId:string):Promise<ServiceRequest[]> {
+    const serviceRequest = await this.serviceRequestRepository.findByStatusAndArchitectId(input.status,architectId)
     if (!serviceRequest) {
       const error = new NotFoundException('No service request found');
       this.logger.error(error.message);
