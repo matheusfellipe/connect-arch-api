@@ -15,11 +15,12 @@ export class AuthController {
   @Public()
   async signIn(@Request() req) {
   console.log(req.user)
-    const { accessToken, refreshToken } =
+    const { accessToken, refreshToken,payload } =
       await this.generateAccessAndRefreshTokenUseCase.execute(req.user);
     return {
       accessToken,
       refreshToken,
+      payload
     };
   }
 }
