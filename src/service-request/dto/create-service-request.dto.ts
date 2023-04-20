@@ -1,11 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { IsString, IsNotEmpty, IsEnum, NotEquals } from 'class-validator';
+import { ServiceRequestStatus } from './enum/service-request-status.enum';
 
-export enum ServiceRequestStatus {
-  REQUESTED = 'requested',
-  ACCEPTED = 'accepted',
-  REFUSED = 'refused',
-}
 
 export class CreateServiceRequestDTO {
   @IsNotEmpty()
@@ -30,4 +26,6 @@ export class CreateServiceRequestDTO {
 
 
 
+
+export { ServiceRequestStatus };
 

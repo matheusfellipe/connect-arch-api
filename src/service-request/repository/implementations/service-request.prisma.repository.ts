@@ -2,21 +2,42 @@
 import { Injectable } from '@nestjs/common';
 import { prismaClient } from '../../../@shared/providers/prisma-config.provider';
 import { ServiceRequest } from '@prisma/client';
-import { CreateServiceRequestDTO } from 'src/service-request/dto/create-service-request.dto';
+import { CreateServiceRequestDTO, ServiceRequestStatus } from 'src/service-request/dto/create-service-request.dto';
 import { UpdateServiceRequestDTO } from 'src/service-request/dto/update-service-request.dto';
 
 @Injectable()
 export class ServiceRequestPrismaRepository {
   
-  async findAll(): Promise<ServiceRequest[]|undefined> {
-     const serviceRequest = await prismaClient.serviceRequest.findMany({});
+  async findAll(userId:string): Promise<ServiceRequest[]> {
+     const serviceRequest = await prismaClient.serviceRequest.findMany({  where: {
+     
+          OR: [
+            { customer_id: userId },
+            { architect_id: userId }
+          ]
+        }
+      
+    });
      if(!serviceRequest) return undefined;
      return serviceRequest
   }
 
-  async findByStatusAndUserId(status: string,userId:string): Promise<ServiceRequest[]> {
+  async findByStatusAndUserId(status: ServiceRequestStatus,userId:string): Promise<ServiceRequest[]> {
      const serviceRequest = prismaClient.serviceRequest.findMany({
-      where: { status:status,userId },
+      where: {
+        AND: [
+          {
+           
+            status
+          },
+          {
+            OR: [
+              { customer_id: userId },
+              { architect_id: userId }
+            ]
+          }
+        ]
+      }
     });
 
     return serviceRequest;
@@ -40,7 +61,7 @@ export class ServiceRequestPrismaRepository {
             id:architectId
         }
     },
-   cliente:{
+   customer:{
     connect:{
         id:customerId
     }
@@ -55,23 +76,26 @@ export class ServiceRequestPrismaRepository {
     id: string,
     updateServiceRequestDTO: UpdateServiceRequestDTO,
   ): Promise<ServiceRequest> {
-    const { userId, architectId, ...rest } = updateServiceRequestDTO;
+    const { customerId, architectId, ...rest } = updateServiceRequestDTO;
     const serviceRequest = await prismaClient.serviceRequest.update({
       where: { id },
       data: {
         ...rest,
         architect: { connect: { id: architectId } },
-        cliente: { connect: { id: userId } },
+       customer: { connect: { id: customerId } },
       },
-      include: { architect: true, cliente: true },
+      include: { architect: true, customer: true },
     });
     return serviceRequest;
   }
 
   async delete(id: string): Promise<ServiceRequest> {
-    const serviceRequest = await prismaClient.serviceRequest.delete({
+    const serviceRequest = await prismaClient.serviceRequest.update({
       where: { id },
-      include: { architect: true, cliente: true },
+      data: {
+       isDeleted:true
+      },
+      
     });
     return serviceRequest;
   }

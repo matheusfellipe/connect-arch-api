@@ -1,9 +1,11 @@
 /* eslint-disable prettier/prettier */
-import { IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
+import { ServiceRequestStatus } from './create-service-request.dto';
 
 export class GetServiceRequestByStatusDTO {
-  @IsString() // TODO: IsCPF
-  status: string;
+  @IsNotEmpty()
+  @IsEnum(ServiceRequestStatus)
+  status: ServiceRequestStatus;
 
   @IsString() // TODO: IsCPF
   architectId: string;

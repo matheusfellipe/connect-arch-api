@@ -20,6 +20,7 @@ export class AuthUseCase {
   async validateUser(email: string, password: string) {
     try {
       const user = await this.getUserByEmailUseCase.execute({ email });
+      
 
       const passwordMatch = await this.encryptProvider.compare(
         user.password,

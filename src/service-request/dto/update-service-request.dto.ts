@@ -12,7 +12,7 @@ export class UpdateServiceRequestDTO {
   status: ServiceRequestStatus;
 
   @IsString()
-  userId: string;
+  customerId: string;
 
   @IsString()
   architectId : string;

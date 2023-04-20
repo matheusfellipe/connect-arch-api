@@ -7,8 +7,9 @@ export class GetAllServiceRequestUseCase {
   private readonly logger: Logger = new Logger(GetAllServiceRequestUseCase.name);
 
   constructor(private readonly serviceRequestRepository: ServiceRequestPrismaRepository) {}
-  async execute() {
-    const serviceRequest = await this.serviceRequestRepository.findAll()
+  async execute(userId:string) {
+  
+    const serviceRequest = await this.serviceRequestRepository.findAll(userId)
     if (!serviceRequest) {
       const error = new NotFoundException('No service request found');
       this.logger.error(error.message);
