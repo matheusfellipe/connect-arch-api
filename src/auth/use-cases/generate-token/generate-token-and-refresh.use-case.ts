@@ -16,8 +16,8 @@ export class GenerateAccessAndRefreshTokenUseCase {
   ) {}
   async execute(user: any) {
  
+  
     const payload = { sub:  user.id,role:user.roleId };
-
     const accessToken = this.jwtService.sign(payload);
 
     const expirationDate = this.dateHandlingProvider.addHours(

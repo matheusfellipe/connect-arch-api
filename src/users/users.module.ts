@@ -6,6 +6,7 @@ import { UsersPrismaRepository } from './repository/implementations/users.prisma
 import { CreateUserController } from './useCases/create-user/create-user.controller';
 import { CreateUserUseCase } from './useCases/create-user/create-user.usecase';
 import { GetUserByEmailUseCase } from './useCases/get-user-by-email/get-user-by-email.usecase';
+import { GetRoleByIdUseCase } from './useCases/get-role-by-id/get-role-by-id.usecase';
 
 @Module({
   controllers: [CreateUserController],
@@ -13,7 +14,8 @@ import { GetUserByEmailUseCase } from './useCases/get-user-by-email/get-user-by-
     UsersMemoryRepository,
     UsersPrismaRepository,
     CreateUserUseCase,
-    GetUserByEmailUseCase
+    GetUserByEmailUseCase,
+    GetRoleByIdUseCase
   ],
   exports: [UsersPrismaRepository, GetUserByEmailUseCase],
 })

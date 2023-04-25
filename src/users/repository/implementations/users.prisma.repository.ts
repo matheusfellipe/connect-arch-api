@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
-import { User } from '@prisma/client';
+import { Role, User } from '@prisma/client';
 import { prismaClient } from '../../../@shared/providers/prisma-config.provider';
 import { CreateUserDTO } from '../../dto/create-user.dto';
 import { IUserRepository } from '../users.repository';
@@ -16,6 +16,14 @@ export class UsersPrismaRepository implements IUserRepository {
     return user || undefined;
   }
 
+  async findByRole(id: string): Promise<Role> {
+    const role = await prismaClient.role.findFirst({
+      where: {
+       id
+      },
+    });
+    return role || undefined;
+  }
 
   async save(data: CreateUserDTO,password:string): Promise<User> {
     const { roleId, ...rest } = data;
