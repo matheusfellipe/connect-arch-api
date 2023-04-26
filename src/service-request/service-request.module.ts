@@ -10,6 +10,7 @@ import { GetAllServiceRequestUseCase } from './use-cases/get-all-service-request
 import { GetServiceRequestByStatusUseCase } from './use-cases/get-service-request-by-status/get-service-request-by-status.usecase';
 import { UpdateServiceRequestUseCase } from './use-cases/update-service-request/update-service.usecase';
 import { DeleteServiceRequestUseCase } from './use-cases/delete-service-request/delete-service-request.usecase';
+import { GetAllServiceRequestController } from './use-cases/get-all-service-request/get-service-request.controller';
 
 
 
@@ -18,6 +19,7 @@ import { DeleteServiceRequestUseCase } from './use-cases/delete-service-request/
   controllers: [
     CreateServiceRequestController,
     GetServiceRequestByStatusController,
+    GetAllServiceRequestController,
     UpdateServiceRequestController,
     DeleteServiceRequestController],
   providers: [

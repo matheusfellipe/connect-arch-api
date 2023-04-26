@@ -16,10 +16,10 @@ export class UsersPrismaRepository implements IUserRepository {
     return user || undefined;
   }
 
-  async findByRole(id: string): Promise<Role> {
-    const role = await prismaClient.role.findFirst({
+  async findUserByRole(roleId: string): Promise<Role> {
+    const role = await prismaClient.user.findFirst({
       where: {
-       id
+      roleId
       },
     });
     return role || undefined;

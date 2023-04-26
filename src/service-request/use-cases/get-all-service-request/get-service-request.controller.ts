@@ -4,7 +4,7 @@ import { GetAllServiceRequestUseCase } from './get-all-service-request.usecase';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 
-@Controller('service-request')
+@Controller('service-requests')
 export class GetAllServiceRequestController {
     constructor(
        

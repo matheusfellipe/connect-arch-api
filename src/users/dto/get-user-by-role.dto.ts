@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { IsString } from 'class-validator';
 
-export class GetRoleByidDTO {
+export class GetUserByRoleDTO {
   @IsString() // TODO: IsCPF
-  id: string;
+  roleId: string;
 }
