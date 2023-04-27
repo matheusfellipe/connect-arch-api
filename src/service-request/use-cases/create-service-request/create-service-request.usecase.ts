@@ -11,7 +11,7 @@ export class CreateServiceRequestUseCase {
   constructor(private readonly serviceRequestRepository: ServiceRequestPrismaRepository) {}
 
   async execute(input: CreateServiceRequestDTO): Promise<ServiceRequest> {
-  
+    
     const serviceRequested = await this.serviceRequestRepository.create(input);
     this.logger.log(`serviceRequested ${serviceRequested.id} created`);
     return serviceRequested;

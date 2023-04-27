@@ -5,7 +5,7 @@ import { ServiceRequest } from '@prisma/client';
 import { UpdateServiceRequestDTO } from 'src/service-request/dto/update-service-request.dto';
 
 
-@Controller('architect')
+@Controller('service-request')
 
 export class UpdateServiceRequestController {
     constructor(

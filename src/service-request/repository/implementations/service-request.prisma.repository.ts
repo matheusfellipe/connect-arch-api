@@ -52,6 +52,7 @@ export class ServiceRequestPrismaRepository {
  }
 
   async create(serviceRequest:CreateServiceRequestDTO): Promise<ServiceRequest> {
+    
     const {customerId,architectId,...rest} = serviceRequest
     const serviceRequestCreated = prismaClient.serviceRequest.create({ 
         data:{

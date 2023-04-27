@@ -5,15 +5,15 @@ import { ServiceRequestStatus } from './create-service-request.dto';
 export class UpdateServiceRequestDTO {
  
   @IsString()
-  description: string;
+  description?: string;
 
  
   @IsEnum(ServiceRequestStatus)
-  status: ServiceRequestStatus;
+  status?: ServiceRequestStatus;
 
   @IsString()
-  customerId: string;
+  customerId?: string;
 
   @IsString()
-  architectId : string;
+  architectId?: string;
 }
