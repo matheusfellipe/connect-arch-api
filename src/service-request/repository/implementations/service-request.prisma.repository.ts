@@ -15,9 +15,14 @@ export class ServiceRequestPrismaRepository {
             { customer_id: userId },
             { architect_id: userId }
           ]
-        }
-      
-    });
+        },
+      include:{
+        customer:true,
+        architect:true
+
+      }
+    }
+    );
      if(!serviceRequest) return undefined;
      return serviceRequest
   }
@@ -37,6 +42,10 @@ export class ServiceRequestPrismaRepository {
             ]
           }
         ]
+      },
+      include:{
+        architect:true,
+        customer:true
       }
     });
 

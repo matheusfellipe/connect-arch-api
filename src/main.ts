@@ -8,8 +8,8 @@ import {json,urlencoded} from 'body-parser';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    allowedHeaders: ['content-type'],
     origin: 'http://localhost:3000',
+    allowedHeaders: ['content-type','Authorization'],
     credentials: true,
   });
   app.useGlobalPipes(new ValidationPipe({
