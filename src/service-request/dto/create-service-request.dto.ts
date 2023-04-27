@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { IsString, IsNotEmpty, IsEnum, NotEquals } from 'class-validator';
+import { IsString, IsNotEmpty, IsEnum, NotEquals, ValidateIf } from 'class-validator';
 import { ServiceRequestStatus } from './enum/service-request-status.enum';
 
 
@@ -8,9 +8,10 @@ export class CreateServiceRequestDTO {
   @IsString()
   description: string;
 
-  @IsNotEmpty()
+  
   @IsEnum(ServiceRequestStatus)
-  status: ServiceRequestStatus;
+  @ValidateIf((object, value) => value !== null)
+  status!: ServiceRequestStatus|null;
 
   @IsString()
   @NotEquals('architectId',{message:'Architect and customer must be different'})
