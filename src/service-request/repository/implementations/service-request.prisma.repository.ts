@@ -100,15 +100,13 @@ export class ServiceRequestPrismaRepository {
     id: string,
     updateServiceRequestDTO: UpdateServiceRequestDTO,
   ): Promise<ServiceRequest> {
-    const { customerId, architectId, ...rest } = updateServiceRequestDTO;
+    const { ...rest } = updateServiceRequestDTO;
     const serviceRequest = await prismaClient.serviceRequest.update({
       where: { id },
       data: {
         ...rest,
-        architect: { connect: { id: architectId } },
-       customer: { connect: { id: customerId } },
-      },
-      include: { architect: true, customer: true },
+      }
+   
     });
     return serviceRequest;
   }

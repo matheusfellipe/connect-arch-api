@@ -3,7 +3,7 @@ import { Controller,Delete, Param} from '@nestjs/common';
 import { DeleteServiceRequestUseCase } from './delete-service-request.usecase';
 import { ServiceRequest } from '@prisma/client';
 
-@Controller()
+@Controller('service-request')
 export class DeleteServiceRequestController {
     constructor(
        

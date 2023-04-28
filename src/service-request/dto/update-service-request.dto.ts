@@ -1,19 +1,16 @@
 /* eslint-disable prettier/prettier */
-import {  IsString, IsEnum } from 'class-validator';
+import {  IsString, IsEnum, IsOptional } from 'class-validator';
 import { ServiceRequestStatus } from './create-service-request.dto';
 
 export class UpdateServiceRequestDTO {
  
+  @IsOptional()
   @IsString()
-  description: string;
+  description?: string;
 
- 
+  @IsOptional()
   @IsEnum(ServiceRequestStatus)
-  status: ServiceRequestStatus;
+  status?: ServiceRequestStatus;
 
-  @IsString()
-  customerId: string;
-
-  @IsString()
-  architectId : string;
+  
 }
