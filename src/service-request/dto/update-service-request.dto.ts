@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import {  IsString, IsEnum, IsOptional } from 'class-validator';
+import {  IsString, IsEnum, IsOptional, IsBoolean } from 'class-validator';
 import { ServiceRequestStatus } from './create-service-request.dto';
 
 export class UpdateServiceRequestDTO {
@@ -12,5 +12,7 @@ export class UpdateServiceRequestDTO {
   @IsEnum(ServiceRequestStatus)
   status?: ServiceRequestStatus;
 
-  
+  @IsOptional()
+  @IsBoolean()
+  isDeleted?: boolean;
 }
