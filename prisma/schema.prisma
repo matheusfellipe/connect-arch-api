@@ -11,6 +11,7 @@ datasource db {
 }
 
 enum ServiceRequestStatus {
+  pending
   requested
   accepted
   refused
@@ -44,14 +45,14 @@ model Role {
 }
 
 model ServiceRequest {
-  id           String                @id @default(uuid())
+  id           String               @id @default(uuid())
   description  String
-  status       ServiceRequestStatus?
-  isDeleted    Boolean               @default(false)
+  status       ServiceRequestStatus @default(pending)
+  isDeleted    Boolean              @default(false)
   customer_id  String?
   architect_id String?
-  architect    User?                 @relation("ServiceRequestArchitect", fields: [architect_id], references: [id])
-  customer     User?                 @relation("ServiceRequestClient", fields: [customer_id], references: [id])
+  architect    User?                @relation("ServiceRequestArchitect", fields: [architect_id], references: [id])
+  customer     User?                @relation("ServiceRequestClient", fields: [customer_id], references: [id])
 
   @@map(name: "service_request")
 }

@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { UsersPrismaRepository } from '../../repository/implementations/users.prisma.repository';
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
-import { Role } from '@prisma/client';
+import {  User } from '@prisma/client';
 import { ROLE } from 'src/@shared/enum/role.enum';
 import { GetUserByRoleDTO } from 'src/users/dto/get-user-by-role.dto';
 
@@ -12,7 +12,7 @@ export class GetUserByRoleUseCase {
 
   constructor(private readonly usersRepository: UsersPrismaRepository) {}
 
-  async execute(input: GetUserByRoleDTO): Promise<Role> {
+  async execute(input: GetUserByRoleDTO): Promise<User[]> {
     if(input.roleId===ROLE.CUSTOMER){
       return
     }
